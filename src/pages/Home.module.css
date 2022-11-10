@@ -1,0 +1,104 @@
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 3px 15px 3px;
+  /* padding-left: 15px; */
+  margin: 3px;
+  margin-right: 50%;
+  border-radius: 4px;
+  text-decoration:none;
+  color:rgb(28, 28, 196) ;
+  background-color: rgb(253, 205, 133);
+font-weight: 500;
+
+}
+
+/* & .active {
+background-color: rgb(221, 0, 0);
+color: chartreuse;
+} */
+
+:hover:not(.navLink),
+:focus-visible:not(.navLink) 
+{
+  color: rgb(255, 72, 0);
+background-color: rgb(255, 255, 255);
+font-weight: 800;
+
+}
+
+.ratingList {
+  color: black;
+  padding: 15px;
+
+}
+
+.hederLink {
+  padding: 3px 30px 3px;
+  margin: 8px;
+  border-radius: 4px;
+  text-decoration:none;
+  color:rgb(28, 28, 196) ;
+  background-color: rgb(253, 205, 133);
+ font-weight: 700;
+
+}
+
+
+
+:hover:not(.hederLink),
+:focus-visible:not(.hederLink) 
+{
+  color: rgb(255, 72, 0);
+background-color: rgb(255, 255, 255);
+font-weight: 700;
+}
+
+
+
+.button {
+  padding: 8px 16px;
+  border-radius: 2px;
+  background-color: #3f51b5;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  display: inline-block;
+  color: #fff;
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 6px;
+  font-style: normal;
+  font-weight: 500;
+  min-width: 30px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.button:hover,
+.button:focus {
+  background-color: #303f9f;
+}
+
+
+.input {
+  display: inline-block;
+  width: 20%;
+  font: inherit;
+  font-size: 16px;
+  height: 26px;
+  border:solid 2px #3f51b5;
+  outline: none;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin: 20px;
+
+}
+
+.input::placeholder {
+  font: inherit;
+  font-size: 16px;
+}

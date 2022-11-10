@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+
+import css from './Home.module.css';
 import { Header } from '../components/Header';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
@@ -38,24 +41,23 @@ export const SearchBox = () => {
       </header>
       <form onSubmit={handleSubmit}>
         <input
+          className={css.input}
           type="text"
           name="text"
           placeholder="Search movie"
         />
-        <button type="submit">
+        <button className={css.button} type="submit">
           <BsSearch />
         </button>
       </form>
-
       <main>
         {/* <div>{searchMovies.length === 0 && 'Вибачте, такого фільму немає'}</div> */}
-
         {searchMovies.length > 0 && (
           <ul>
             {searchMovies.map(movie => (
-              <li key={movie.id}>
+              <NavLink to={`${movie.id}`} className={css.navLink} key={movie.id}>
                 {movie.original_title ? movie.original_title : movie.name}{' '}
-              </li>
+              </NavLink>
             ))}
           </ul>
         )}
