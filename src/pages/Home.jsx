@@ -18,7 +18,7 @@ export const Home = () => {
         const response = await axios.get(`trending/all/day?api_key=${API_KEY}`);
         const movies = response.data.results;
         setRating(movies);
-        console.log(rating);
+        // console.log(rating);
       } catch (error) {
         console.log(error);
       }
@@ -29,7 +29,7 @@ export const Home = () => {
 
   return (
     <>
-      <header>
+      <header className={css.header}>
         <Header />
       </header>
       <main className={css.ratingList}>

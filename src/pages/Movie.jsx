@@ -36,7 +36,7 @@ export const SearchBox = () => {
 
   return (
     <div>
-      <header>
+      <header className={css.header}>
         <Header />
       </header>
       <form onSubmit={handleSubmit}>

@@ -102,3 +102,8 @@ font-weight: 700;
   font: inherit;
   font-size: 16px;
 }
+
+
+.header {
+  margin-bottom: 20px;
+}
