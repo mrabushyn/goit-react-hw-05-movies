@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import css from './Home.module.css';
-
+import { StyledLink } from './Home.styled';
 import axios from 'axios';
 
-import { Header } from '../components/Header';
+import { Header } from '../../components/Header/Header';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
@@ -18,7 +16,6 @@ export const Home = () => {
         const response = await axios.get(`trending/all/day?api_key=${API_KEY}`);
         const movies = response.data.results;
         setRating(movies);
-        // console.log(rating);
       } catch (error) {
         console.log(error);
       }
@@ -29,21 +26,22 @@ export const Home = () => {
 
   return (
     <>
-      <header className={css.header}>
+      <header 
+      >
         <Header />
       </header>
-      <main className={css.ratingList}>
+      <main 
+      >
         <b>Trending today</b>
         {rating.length > 0 && (
           <ul>
             {rating.map(movie => (
-              <NavLink
+              <StyledLink
                 to={`/movies/${movie.id}`}
-                className={css.navLink}
                 key={movie.id}
               >
                 {movie.original_title ? movie.original_title : movie.name}
-              </NavLink>
+              </StyledLink>
             ))}
           </ul>
         )}

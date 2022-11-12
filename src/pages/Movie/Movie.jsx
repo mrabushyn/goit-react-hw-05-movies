@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
+import { StyledLink, Input, Button } from './Movie.styled';
 
-import css from './Home.module.css';
-import { Header } from '../components/Header';
+
+// import css from './Home.module.css';
+import { Header } from '../../components/Header/Header';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
@@ -36,28 +38,37 @@ export const SearchBox = () => {
 
   return (
     <div>
-      <header className={css.header}>
+      <header
+      // className={css.header}
+      >
         <Header />
       </header>
       <form onSubmit={handleSubmit}>
-        <input
-          className={css.input}
+        <Input
+          // className={css.input}
           type="text"
           name="text"
           placeholder="Search movie"
         />
-        <button className={css.button} type="submit">
+        <Button
+          // className={css.button}
+          type="submit"
+        >
           <BsSearch />
-        </button>
+        </Button>
       </form>
       <main>
         {/* <div>{searchMovies.length === 0 && 'Вибачте, такого фільму немає'}</div> */}
         {searchMovies.length > 0 && (
           <ul>
             {searchMovies.map(movie => (
-              <NavLink to={`${movie.id}`} className={css.navLink} key={movie.id}>
+              <StyledLink
+                to={`${movie.id}`}
+                // className={css.navLink}
+                key={movie.id}
+              >
                 {movie.original_title ? movie.original_title : movie.name}{' '}
-              </NavLink>
+              </StyledLink>
             ))}
           </ul>
         )}
