@@ -1,4 +1,5 @@
-import { StyledLink, Box } from './Header.styled';
+import { StyledLink, Container } from './Header.styled';
+
 
 const navItems = [
   {href: '/', text: 'Home' },
@@ -7,12 +8,12 @@ const navItems = [
 
 export const Header = () => {
   return (
-    <Box>
+    <Container>
       {navItems.map(items => (
         <StyledLink 
         to={items.href} key={items.href}>
           {items.text}
         </StyledLink>
       ))}
-    </Box>
+    </Container> 
   );}

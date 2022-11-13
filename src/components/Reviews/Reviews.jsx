@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Container, TitleH2, Inform, Item } from './Reviews.styled';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
 export const MovieReviews = () => {
-  const [reviewsList, setReviews] = useState(null);
+  const [reviewsList, setReviews] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -23,19 +24,17 @@ export const MovieReviews = () => {
     fatchData();
   }, [movieId]);
 
-  console.log(reviewsList);
-
-
   return (
-    <ul>
-      {reviewsList ?
-        reviewsList.map(({ author, content, id }) => (
-          <li key={id}>
-            Author: {author}
-            {content}
-          </li>
-        )) : 'No reviews'}
-    </ul>
+    <Container>
+      {reviewsList.length === 0
+        ? <Inform> No reviews </Inform>
+        : reviewsList.map(({ author, content, id }) => (
+            <Item key={id}>
+              <TitleH2>Author: {author}</TitleH2>
+              <Inform>{content}</Inform>
+            </Item>
+          ))}
+    </Container>
   );
 };
 

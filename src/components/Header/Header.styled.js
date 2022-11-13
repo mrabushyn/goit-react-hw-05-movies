@@ -22,9 +22,9 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const Box = styled.div `
-margin: 15px;
-border-bottom: solid 1px;
-`
+const Container = styled.div`
+  margin: 15px;
+  border-bottom: solid 1px;
+`;
 
-export { StyledLink, Box };
+export { StyledLink, Container };

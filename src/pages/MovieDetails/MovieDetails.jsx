@@ -46,13 +46,12 @@ export const MovieDetails = () => {
     vote_average,
     release_date,
   } = movie;
-  console.log(movie);
 
   const date = new Date(release_date);
   const year = date.getFullYear();
 const vote = (vote_average * 10);
 
-  return (
+  return ( 
     <>
         <Header />
       {movie && (
@@ -79,7 +78,7 @@ const vote = (vote_average * 10);
             <TitleH2>Genres</TitleH2>
             <Inform>
               {genres &&
-                genres.map(genre => <Li key={genre.id}>{genre.name}</Li>)}
+                genres.map(({id, name}) => <Li key={id}>{name}</Li>)}
             </Inform>
           </Div>
         </MainContainer>

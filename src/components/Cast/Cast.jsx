@@ -19,17 +19,12 @@ export const MovieCast = () => {
           `movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
         );
         setCastList(response.data.cast);
-        // console.log(cast);
       } catch (error) {
         console.log(error);
       }
     }
     fatchData();
   }, [movieId]);
-
-  console.log(castList);
-  // const { cast_id, name, profile_path } = castList;
-
 
 return (
   <CastList>
@@ -52,8 +47,3 @@ return (
 );
 }
 
-
-
-
-// https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
-// https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
