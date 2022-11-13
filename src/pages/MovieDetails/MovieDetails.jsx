@@ -13,7 +13,7 @@ import {
 } from './MovieDetails.styled';
 
 import { Header } from '../../components/Header/Header';
-import { CastReviewsLinks } from '../../components/Links';
+import { CastReviewsLinks } from '../../components/Links/Links';
 
 import defImg from '../../image/defImg.jpg';
 

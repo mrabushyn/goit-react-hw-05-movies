@@ -2,8 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import { Home } from 'pages/Home/Home';
 import { SearchBox } from 'pages/Movie/Movie';
 import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
-import { MovieCast } from '../components/Cast';
-import { MovieReviews } from '../components/Reviews';
+import { MovieCast } from './Cast/Cast';
+import { MovieReviews } from './Reviews/Reviews';
 
 export const App = () => {
   return (
@@ -23,6 +23,7 @@ export const App = () => {
         <Route path="movies/:movieId" element={<MovieDetails />}>
           <Route path="cast" element={<MovieCast />} />
           <Route path="reviews" element={<MovieReviews />} />
+          <Route index element={<MovieCast />} />
         </Route>
       </Routes>
     </div>

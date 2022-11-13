@@ -20,9 +20,13 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
+const TitleH2 = styled.h1`
+  font-size: 22px;
+  font-weight: 800;
+margin: 25px 40px;
+`;
 
 
 
-export {
-  StyledLink,
-};
+
+export { StyledLink, TitleH2 };

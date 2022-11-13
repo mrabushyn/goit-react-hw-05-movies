@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Actor, CastList, Name } from './Cast.styled';
 
-import defImg from '../image/defImg.jpg';
+import defImg from '../../image/defImg.jpg';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
@@ -31,10 +32,10 @@ export const MovieCast = () => {
 
 
 return (
-  <div>
+  <CastList>
     {castList &&
       castList.map(({ cast_id, name, profile_path }) => (
-        <div key={cast_id}>
+        <Actor key={cast_id}>
           <img
             src={
               profile_path
@@ -42,12 +43,12 @@ return (
                 : defImg
             }
             alt={`${name}`}
-            width="110"
+            width="70"
           />
-          {name}
-        </div>
+          <Name>{name}</Name>
+        </Actor>
       ))}
-  </div>
+  </CastList>
 );
 }
 

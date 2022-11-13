@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyledLink } from './Home.styled';
+import { StyledLink, TitleH2 } from './Home.styled';
 import axios from 'axios';
 
 import { Header } from '../../components/Header/Header';
@@ -26,11 +26,9 @@ export const Home = () => {
 
   return (
     <>
-      <header>
         <Header />
-      </header>
       <main>
-        <b>Trending today</b>
+        <TitleH2>Trending today</TitleH2>
         {rating.length > 0 && (
           <ul>
             {rating.map(({ id, original_title, name }) => (
