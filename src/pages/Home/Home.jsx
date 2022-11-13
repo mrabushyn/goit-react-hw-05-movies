@@ -26,21 +26,16 @@ export const Home = () => {
 
   return (
     <>
-      <header 
-      >
+      <header>
         <Header />
       </header>
-      <main 
-      >
+      <main>
         <b>Trending today</b>
         {rating.length > 0 && (
           <ul>
-            {rating.map(movie => (
-              <StyledLink
-                to={`/movies/${movie.id}`}
-                key={movie.id}
-              >
-                {movie.original_title ? movie.original_title : movie.name}
+            {rating.map(({ id, original_title, name }) => (
+              <StyledLink to={`/movies/${id}`} key={id}>
+                {original_title ? original_title : name}
               </StyledLink>
             ))}
           </ul>

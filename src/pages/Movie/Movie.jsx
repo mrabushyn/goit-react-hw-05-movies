@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
-// import { NavLink } from 'react-router-dom';
 import { StyledLink, Input, Button } from './Movie.styled';
 
 
@@ -38,20 +37,14 @@ export const SearchBox = () => {
 
   return (
     <div>
-      <header
-      // className={css.header}
-      >
         <Header />
-      </header>
       <form onSubmit={handleSubmit}>
         <Input
-          // className={css.input}
           type="text"
           name="text"
           placeholder="Search movie"
         />
         <Button
-          // className={css.button}
           type="submit"
         >
           <BsSearch />
@@ -61,13 +54,9 @@ export const SearchBox = () => {
         {/* <div>{searchMovies.length === 0 && 'Вибачте, такого фільму немає'}</div> */}
         {searchMovies.length > 0 && (
           <ul>
-            {searchMovies.map(movie => (
-              <StyledLink
-                to={`${movie.id}`}
-                // className={css.navLink}
-                key={movie.id}
-              >
-                {movie.original_title ? movie.original_title : movie.name}{' '}
+            {searchMovies.map(({ id, original_title, name }) => (
+              <StyledLink to={`${id}`} key={id}>
+                {original_title ? original_title : name}
               </StyledLink>
             ))}
           </ul>
