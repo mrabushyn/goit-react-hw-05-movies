@@ -9,6 +9,7 @@ const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 export const SearchBox = () => {
   const [searchText, setSearchText] = useState('');
   const [searchMovies, setSearchMovies] = useState(null);
+  const [viewButton, setViewButton] = useState(null);
 
   useEffect(() => {
     async function fatchData() {
@@ -19,29 +20,47 @@ export const SearchBox = () => {
         const searchMoviesResponse = response.data.results;
         setSearchMovies(searchMoviesResponse);
       } catch (error) {
-        console.log(error);
+        error.message = 'how to turn off first render?';
+        // console.log(error.message);
       }
     }
     fatchData();
   }, [searchText]);
 
+        
+
+
   const handleSubmit = evt => {
     evt.preventDefault();
     const inputSearch = evt.target.elements.text.value;
     setSearchText(inputSearch);
+    setViewButton(null);
+  };
+
+  const handleChange = evt => {
+    const inputChange = evt.target.value;
+    setViewButton(inputChange);
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <Input type="text" name="text" placeholder="Search movie" />
-        <Button disable type="submit">
-          <BsSearch />
-        </Button>
+        <Input
+          type="text"
+          name="text"
+          placeholder="Search movie"
+          onChange={handleChange}
+        />
+        {viewButton && (
+          <Button type="submit">
+            <BsSearch />
+          </Button>
+        )}
       </form>
       <main>
         <div>
-          {searchMovies && searchMovies.length === 0 &&
+          {searchMovies &&
+            searchMovies.length === 0 &&
             'Здається такого фільму немає'}
         </div>
         {searchMovies && (
