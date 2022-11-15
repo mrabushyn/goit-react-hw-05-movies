@@ -12,7 +12,7 @@ import {
   Li,
 } from './MovieDetails.styled';
 
-import { Header } from '../../components/Header/Header';
+// import { Header } from '../../components/Header/Header';
 import { CastReviewsLinks } from '../../components/Links/Links';
 
 import defImg from '../../image/defImg.jpg';
@@ -53,7 +53,7 @@ const vote = (vote_average * 10);
 
   return ( 
     <>
-        <Header />
+        {/* <Header /> */}
       {movie && (
         <MainContainer>
           <Box>

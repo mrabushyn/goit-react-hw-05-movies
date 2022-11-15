@@ -23,7 +23,7 @@ const Input = styled.input`
   font: inherit;
   font-size: 16px;
   height: 26px;
-  border:solid 2px #3f51b5;
+  border:solid 2px red;
   outline: none;
   padding-left: 4px;
   padding-right: 4px;
@@ -40,7 +40,7 @@ const Input = styled.input`
 const Button = styled.button`
   padding: 8px 16px;
   border-radius: 2px;
-  background-color: #3f51b5;
+  background-color: red;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   display: inline-block;

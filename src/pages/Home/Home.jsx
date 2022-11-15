@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { StyledLink, TitleH2 } from './Home.styled';
 import axios from 'axios';
 
-import { Header } from '../../components/Header/Header';
-
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
@@ -26,7 +24,6 @@ export const Home = () => {
 
   return (
     <>
-        <Header />
       <main>
         <TitleH2>Trending today</TitleH2>
         {rating.length > 0 && (

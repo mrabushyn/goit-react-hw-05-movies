@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { StyledLink, LinkContainer, TitleH2 } from './Links.styled';
 
-
 const navItems = [
   { href: 'cast', text: 'Cast' },
   { href: 'reviews', text: 'Reviews' },

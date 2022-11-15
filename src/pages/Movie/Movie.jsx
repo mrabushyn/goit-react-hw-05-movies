@@ -3,16 +3,12 @@ import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
 import { StyledLink, Input, Button } from './Movie.styled';
 
-
-// import css from './Home.module.css';
-import { Header } from '../../components/Header/Header';
-
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
 export const SearchBox = () => {
   const [searchText, setSearchText] = useState('');
-  const [searchMovies, setSearchMovies] = useState([]);
+  const [searchMovies, setSearchMovies] = useState(null);
 
   useEffect(() => {
     async function fatchData() {
@@ -37,22 +33,18 @@ export const SearchBox = () => {
 
   return (
     <div>
-        <Header />
       <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="text"
-          placeholder="Search movie"
-        />
-        <Button
-          type="submit"
-        >
+        <Input type="text" name="text" placeholder="Search movie" />
+        <Button disable type="submit">
           <BsSearch />
         </Button>
       </form>
       <main>
-        {/* <div>{searchMovies.length === 0 && 'Вибачте, такого фільму немає'}</div> */}
-        {searchMovies.length > 0 && (
+        <div>
+          {searchMovies && searchMovies.length === 0 &&
+            'Здається такого фільму немає'}
+        </div>
+        {searchMovies && (
           <ul>
             {searchMovies.map(({ id, original_title, name }) => (
               <StyledLink to={`${id}`} key={id}>

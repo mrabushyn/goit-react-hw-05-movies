@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Actor, CastList, Name } from './Cast.styled';
 
-import defImg from '../../image/defImg.jpg';
+import incognito from '../../image/incognito.jpg';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
@@ -26,24 +26,23 @@ export const MovieCast = () => {
     fatchData();
   }, [movieId]);
 
-return (
-  <CastList>
-    {castList &&
-      castList.map(({ cast_id, name, profile_path }) => (
-        <Actor key={cast_id}>
-          <img
-            src={
-              profile_path
-                ? `https://image.tmdb.org/t/p/original${profile_path}`
-                : defImg
-            }
-            alt={`${name}`}
-            width="70"
-          />
-          <Name>{name}</Name>
-        </Actor>
-      ))}
-  </CastList>
-);
-}
-
+  return (
+    <CastList>
+      {castList &&
+        castList.map(({ cast_id, name, profile_path }) => (
+          <Actor key={cast_id}>
+            <img
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/original${profile_path}`
+                  : incognito
+              }
+              alt={`${name}`}
+              width="70"
+            />
+            <Name>{name}</Name>
+          </Actor>
+        ))}
+    </CastList>
+  );
+};
