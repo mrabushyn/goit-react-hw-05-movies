@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
 import axios from 'axios';
 import {
   Img,
@@ -14,6 +15,7 @@ import {
 
 // import { Header } from '../../components/Header/Header';
 import { CastReviewsLinks } from '../../components/Links/Links';
+// import { Home } from 'pages/Home/Home';
 
 import defImg from '../../image/defImg.jpg';
 
@@ -51,11 +53,11 @@ export const MovieDetails = () => {
   const year = date.getFullYear();
 const vote = (vote_average * 10);
 
-  return ( 
-    <>
-        {/* <Header /> */}
+  return (
+    <><Link to="/"> Go back </Link>
       {movie && (
         <MainContainer>
+          
           <Box>
             <Img
               src={
@@ -77,8 +79,7 @@ const vote = (vote_average * 10);
             <Inform>{overview}</Inform>
             <TitleH2>Genres</TitleH2>
             <Inform>
-              {genres &&
-                genres.map(({id, name}) => <Li key={id}>{name}</Li>)}
+              {genres && genres.map(({ id, name }) => <Li key={id}>{name}</Li>)}
             </Inform>
           </Div>
         </MainContainer>
