@@ -1,26 +1,22 @@
 import { useState, useEffect } from 'react';
-
-
 import { Loader } from '../../components/Loader/Loader';
 // import { InputBox } from 'components/SearchBox/SearchBox';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
 import { StyledLink, Input, Button } from './Movie.styled';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
 export const SearchBox = () => {
-  // значення query, після сабміту форми
+  const location = useLocation();
   const [searchText, setSearchText] = useState('');
-  // масив обєктів - результат фетча(респонс)
   const [searchMovies, setSearchMovies] = useState(null);
-  // лоадер
   const [loading, setLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const filterParam = searchParams.get('query') ?? '';
-  console.log(filterParam);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const filterParam = searchParams.get('query') ?? '';
+
 
   useEffect(() => {
     async function fatchData() {
@@ -37,39 +33,35 @@ export const SearchBox = () => {
       }
     }
     fatchData();
-  }, [searchText, searchParams]);
+  }, [searchText]);
 
   const handleSubmit = evt => {
     evt.preventDefault();
     setLoading(true);
     const inputSearch = evt.target.elements.text.value;
     setSearchText(inputSearch);
+    // setSearchParams(inputSearch !== '' ? { query: inputSearch } : {});
+    setLoading(false);
+
+    if (inputSearch === '') {
+      setLoading(false);
+      alert('Введіть текст для пошуку');
+    }
   };
 
-  const handleChange = evt => {
-    const inputChange = evt.target.value;
-    setSearchParams(inputChange !== '' ? { query: inputChange } : {});
-  };
+  let arrayOfMovies = [];
+    arrayOfMovies = location.state?.a;
 
   return (
     <div>
-      
-      {/* <InputBox onChange={changeFilter} /> */}
       <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="text"
-          value={filterParam}
-          placeholder="Search movie"
-          onChange={handleChange}
-        />
-        {filterParam !== '' && (
-          <Button type="submit">
+        <Input type="text" name="text" placeholder="Search movie" />
+        {
+          <Button type="onChange">
             <BsSearch />
           </Button>
-        )}
+        }
       </form>
-      
       <main>
         {loading && <Loader />}
         <div>
@@ -80,12 +72,33 @@ export const SearchBox = () => {
         {searchMovies && (
           <ul>
             {searchMovies.map(({ id, original_title, name }) => (
-              <StyledLink to={`${id}`} key={id}>
+              <StyledLink
+                to={`${id}`}
+                key={id}
+                state={{ from: location, arr: searchMovies }}
+              >
                 {original_title ? original_title : name}
               </StyledLink>
             ))}
           </ul>
         )}
+        {arrayOfMovies &&
+          !searchMovies && (
+            <ul>
+              {arrayOfMovies.map(({ id, original_title, name }) => (
+                <StyledLink
+                  to={`${id}`}
+                  key={id}
+                  state={{
+                    from: location,
+                    arr: arrayOfMovies,
+                  }}
+                >
+                  {original_title ? original_title : name}
+                </StyledLink>
+              ))}
+            </ul>
+          )}
       </main>
     </div>
   );

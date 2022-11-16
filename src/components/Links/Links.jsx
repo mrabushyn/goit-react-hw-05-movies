@@ -9,7 +9,7 @@ const navItems = [
 export const CastReviewsLinks = () => {
   return (
     <div>
-      <TitleH2> Additional information: </TitleH2>
+            <TitleH2> Additional information: </TitleH2>
       <LinkContainer>
         {navItems.map(({ href, text }) => (
           <StyledLink to={href} key={href}>
