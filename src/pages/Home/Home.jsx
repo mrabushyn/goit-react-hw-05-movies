@@ -6,15 +6,20 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
-export const Home = () => {
+const Home = () => {
   const [rating, setRating] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+const controller = new AbortController();
+
     async function fatchData() {
       try {
         setLoading(true);
-        const response = await axios.get(`trending/all/day?api_key=${API_KEY}`);
+        const response = await axios.get(
+          `trending/all/day?api_key=${API_KEY}`,
+          { signal: controller.signal }
+        );
         const movies = response.data.results;
         setLoading(false);
         setRating(movies);
@@ -44,3 +49,6 @@ export const Home = () => {
     </>
   );
 };
+
+
+export default Home

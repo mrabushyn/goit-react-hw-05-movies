@@ -21,7 +21,7 @@ import defImg from '../../image/defImg.jpg';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const location = useLocation();
@@ -98,3 +98,6 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+
+export default MovieDetails

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Loader } from '../../components/Loader/Loader';
-// import { InputBox } from 'components/SearchBox/SearchBox';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
 import { StyledLink, Input, Button } from './Movie.styled';
@@ -9,13 +8,11 @@ import { useLocation } from 'react-router-dom';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
-export const SearchBox = () => {
+const SearchBox = () => {
   const location = useLocation();
   const [searchText, setSearchText] = useState('');
   const [searchMovies, setSearchMovies] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const filterParam = searchParams.get('query') ?? '';
 
 
   useEffect(() => {
@@ -29,7 +26,7 @@ export const SearchBox = () => {
         setLoading(false);
       } catch (error) {
         error.message = 'how to turn off first render?';
-        // console.log(error.message);
+        console.log(error.message);
       }
     }
     fatchData();
@@ -103,3 +100,6 @@ export const SearchBox = () => {
     </div>
   );
 };
+
+
+export default SearchBox;

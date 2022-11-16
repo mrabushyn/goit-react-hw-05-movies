@@ -1,12 +1,13 @@
 import { StyledLink, Container } from './Header.styled';
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 const navItems = [
   { href: '/', text: 'Home' },
   { href: '/movies', text: 'Movies' },
 ];
 
-export const Header = () => {
+ const Header = () => {
   return (
     <>
       <Container>
@@ -16,7 +17,11 @@ export const Header = () => {
           </StyledLink>
         ))}
       </Container>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
+      
     </>
   );
 };
+export default Header;

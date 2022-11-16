@@ -8,7 +8,7 @@ import incognito from '../../image/incognito.jpg';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
-export const MovieCast = () => {
+const MovieCast = () => {
   const [castList, setCastList] = useState(null);
   const { movieId } = useParams();
 
@@ -46,3 +46,4 @@ export const MovieCast = () => {
     </CastList>
   );
 };
+export default MovieCast

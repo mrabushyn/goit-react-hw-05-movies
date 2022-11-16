@@ -1,6 +1,6 @@
 import { Box, Div } from './NotFound.styled';
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <>
       <Box>
@@ -15,3 +15,4 @@ export const NotFound = () => {
     </>
   );
 };
+export default NotFound
