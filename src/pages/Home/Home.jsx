@@ -11,19 +11,20 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-const controller = new AbortController();
+// const controller = new AbortController();
 
     async function fatchData() {
       try {
         setLoading(true);
         const response = await axios.get(
           `trending/all/day?api_key=${API_KEY}`,
-          { signal: controller.signal }
+          // { signal: controller.signal }
         );
         const movies = response.data.results;
         setLoading(false);
         setRating(movies);
-      } catch (error) {
+      } 
+      catch (error) {
         console.log(error);
       }
     }

@@ -12,7 +12,7 @@ import { lazy } from 'react';
 
 
 
-const Header = lazy(() => import('./Header/Header'));
+const Header = lazy(() => import('../pages/Header/Header'));
 const Home = lazy(() => import('../pages/Home/Home'));
 const SearchBox = lazy(() => import('../pages/Movie/Movie'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));

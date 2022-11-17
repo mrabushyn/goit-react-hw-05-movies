@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { CastReviewsLinks } from '../../components/Links/Links';
+
 import axios from 'axios';
 import {
   Img,
@@ -11,11 +12,10 @@ import {
   Inform,
   TitleH2,
   Li,
+  StyledLink,
 } from './MovieDetails.styled';
 
 import defImg from '../../image/defImg.jpg';
-
-
 
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
@@ -54,17 +54,18 @@ const MovieDetails = () => {
   const date = new Date(release_date);
   const year = date.getFullYear();
   const vote = vote_average * 10;
-  // console.log(location.state?.arr);
+
+// console.log('це він',location.state?.arr);
 
   return (
     <>
       {
-        <Link
+        <StyledLink
           to={location.state?.from ?? '/'}
           state={{ a: location.state?.arr ?? [] }}
         >
           Go back
-        </Link>
+        </StyledLink>
       }
       {movie && (
         <MainContainer>

@@ -1,5 +1,14 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
+const StyledLink = styled(NavLink)`
+  margin: 30px;
+
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+
+`;
 
 const Img = styled.img`
   display: flex;
@@ -46,4 +55,4 @@ const Li = styled.li`
   padding-right: 15px;
 
 `;
-export { Img, Box, Div, MainContainer, Title, Inform, TitleH2, Li };
+export { Img, Box, Div, MainContainer, Title, Inform, TitleH2, Li, StyledLink };
