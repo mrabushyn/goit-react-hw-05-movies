@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { CastReviewsLinks } from '../../components/Links/Links';
 
 import axios from 'axios';
@@ -17,7 +18,6 @@ import {
 
 import defImg from '../../image/defImg.jpg';
 
-
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
@@ -25,7 +25,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const location = useLocation();
-console.log(location);
+
 
   useEffect(() => {
     async function fatchData() {
@@ -55,18 +55,12 @@ console.log(location);
   const year = date.getFullYear();
   const vote = vote_average * 10;
 
-// console.log('це він',location.state?.arr);
+
+const listLocation = location.state?.from;
 
   return (
     <>
-      {
-        <StyledLink
-          to={location.state?.from ?? '/'}
-          // state={{ a: location.state?.arr ?? [] }}
-        >
-          Go back
-        </StyledLink>
-      }
+      {<StyledLink to={location.state?.from ?? '/'}>Go back</StyledLink>}
       {movie && (
         <MainContainer>
           <Box>
@@ -95,7 +89,7 @@ console.log(location);
           </Div>
         </MainContainer>
       )}
-      <CastReviewsLinks />
+      <CastReviewsLinks state={listLocation} />
     </>
   );
 };

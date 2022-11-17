@@ -47,16 +47,12 @@ const SearchBox = () => {
     }
   };
 
-  console.log(query);
-  // let arrayOfMovies = [];
-  // arrayOfMovies = location.state?.a;
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <Input type="text" name="text" placeholder="Search movie" />
         {
-          <Button type="onChange">
+          <Button type="submit">
             <BsSearch />
           </Button>
         }
@@ -65,7 +61,7 @@ const SearchBox = () => {
         {loading && <Loader />}
         <div>
           {searchMovies &&
-            searchMovies.length === [] &&
+            searchMovies.length === 0 &&
             'Здається такого фільму немає'}
         </div>
         {searchMovies && (
