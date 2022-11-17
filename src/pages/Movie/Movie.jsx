@@ -3,17 +3,18 @@ import { Loader } from '../../components/Loader/Loader';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
 import { StyledLink, Input, Button } from './Movie.styled';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f09951289a6b6bcb457d17314bf86aca';
 
 const SearchBox = () => {
-  const location = useLocation();
-  const [searchText, setSearchText] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+  const [searchText, setSearchText] = useState(query !== '' ? query : '');
   const [searchMovies, setSearchMovies] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const location = useLocation();
 
   useEffect(() => {
     async function fatchData() {
@@ -37,7 +38,7 @@ const SearchBox = () => {
     setLoading(true);
     const inputSearch = evt.target.elements.text.value;
     setSearchText(inputSearch);
-    // setSearchParams(inputSearch !== '' ? { query: inputSearch } : {});
+    setSearchParams(inputSearch !== '' ? { query: inputSearch } : {});
     setLoading(false);
 
     if (inputSearch === '') {
@@ -46,8 +47,9 @@ const SearchBox = () => {
     }
   };
 
-  let arrayOfMovies = [];
-    arrayOfMovies = location.state?.a;
+  console.log(query);
+  // let arrayOfMovies = [];
+  // arrayOfMovies = location.state?.a;
 
   return (
     <div>
@@ -63,43 +65,38 @@ const SearchBox = () => {
         {loading && <Loader />}
         <div>
           {searchMovies &&
-            searchMovies.length === 0 &&
+            searchMovies.length === [] &&
             'Здається такого фільму немає'}
         </div>
         {searchMovies && (
           <ul>
             {searchMovies.map(({ id, original_title, name }) => (
-              <StyledLink
-                to={`${id}`}
-                key={id}
-                state={{ from: location, arr: searchMovies }}
-              >
+              <StyledLink to={`${id}`} key={id} state={{ from: location }}>
                 {original_title ? original_title : name}
               </StyledLink>
             ))}
           </ul>
         )}
-        {arrayOfMovies &&
-          !searchMovies && (
-            <ul>
-              {arrayOfMovies.map(({ id, original_title, name }) => (
-                <StyledLink
-                  to={`${id}`}
-                  key={id}
-                  state={{
-                    from: location,
-                    arr: arrayOfMovies,
-                  }}
-                >
-                  {original_title ? original_title : name}
-                </StyledLink>
-              ))}
-            </ul>
-          )}
       </main>
     </div>
   );
 };
 
-
 export default SearchBox;
+
+// {/* {arrayOfMovies && !searchMovies && (
+//   <ul>
+//     {arrayOfMovies.map(({ id, original_title, name }) => (
+//       <StyledLink
+//         to={`${id}`}
+//         key={id}
+//         state={{
+//           from: location,
+//           arr: arrayOfMovies,
+//         }}
+//       >
+//         {original_title ? original_title : name}
+//       </StyledLink>
+//     ))}
+//   </ul>
+// )} */}

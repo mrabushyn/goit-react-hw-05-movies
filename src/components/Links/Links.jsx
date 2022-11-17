@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { StyledLink, LinkContainer, TitleH2 } from './Links.styled';
 
@@ -17,7 +18,10 @@ export const CastReviewsLinks = () => {
           </StyledLink>
         ))}
       </LinkContainer>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
+      
     </div>
   );
 };

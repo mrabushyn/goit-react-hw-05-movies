@@ -25,7 +25,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const location = useLocation();
-
+console.log(location);
 
   useEffect(() => {
     async function fatchData() {
@@ -62,7 +62,7 @@ const MovieDetails = () => {
       {
         <StyledLink
           to={location.state?.from ?? '/'}
-          state={{ a: location.state?.arr ?? [] }}
+          // state={{ a: location.state?.arr ?? [] }}
         >
           Go back
         </StyledLink>
