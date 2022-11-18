@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
@@ -15,6 +15,7 @@ const SearchBox = () => {
   const [searchMovies, setSearchMovies] = useState(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
+  const firstRender = useRef(null);
 
   useEffect(() => {
     async function fatchData() {
@@ -25,6 +26,8 @@ const SearchBox = () => {
         const searchMoviesResponse = response.data.results;
         setSearchMovies(searchMoviesResponse);
         setLoading(false);
+
+
       } catch (error) {
         error.message = 'how to turn off first render?';
         console.log(error.message);
@@ -48,7 +51,7 @@ const SearchBox = () => {
   };
 
   return (
-    <div>
+    <div >
       <form onSubmit={handleSubmit}>
         <Input type="text" name="text" placeholder="Search movie" />
         {
