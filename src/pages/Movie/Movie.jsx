@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
@@ -15,10 +15,9 @@ const SearchBox = () => {
   const [searchMovies, setSearchMovies] = useState(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  const firstRender = useRef(null);
 
   useEffect(() => {
-    async function fatchData() {
+    async function fetchData() {
       try {
         const response = await axios.get(
           `search/movie?api_key=${API_KEY}&query=${searchText}&language=en-US&page=1&include_adult=false`
@@ -26,32 +25,34 @@ const SearchBox = () => {
         const searchMoviesResponse = response.data.results;
         setSearchMovies(searchMoviesResponse);
         setLoading(false);
-
-
       } catch (error) {
         error.message = 'how to turn off first render?';
         console.log(error.message);
       }
     }
-    fatchData();
+
+    if (query !== '') {
+    fetchData();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText]);
 
   const handleSubmit = evt => {
     evt.preventDefault();
+
     setLoading(true);
     const inputSearch = evt.target.elements.text.value;
     setSearchText(inputSearch);
     setSearchParams(inputSearch !== '' ? { query: inputSearch } : {});
     setLoading(false);
-
     if (inputSearch === '') {
       setLoading(false);
       alert('Введіть текст для пошуку');
     }
   };
-
+  
   return (
-    <div >
+    <div>
       <form onSubmit={handleSubmit}>
         <Input type="text" name="text" placeholder="Search movie" />
         {
